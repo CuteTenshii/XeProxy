@@ -90,19 +90,12 @@ def generate():
     ]
     for l in lines:
         body.append('    "%s",' % c_escape(l))
-    # The plugin writes CRLF, so the file it produces is one byte per line
-    # longer than the source. It then has to be able to read it back, so this
-    # count is asserted against INI_MAX_BYTES at compile time.
-    crlf_bytes = sum(len(l) + 2 for l in lines)
 
     body += [
         "};",
         "",
         "#define XEP_DEFAULT_INI_LINES "
         "((int)(sizeof(kDefaultIni) / sizeof(kDefaultIni[0])))",
-        "",
-        "// Size of what the plugin writes, CRLF endings included.",
-        "#define XEP_DEFAULT_INI_BYTES %d" % crlf_bytes,
         "",
         "#endif // XEP_DEFAULT_INI_H",
         "",

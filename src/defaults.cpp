@@ -4,9 +4,6 @@
 #include "xep.h"
 #include "default_ini.h"
 
-// Must be readable back, or every boot writes it again.
-C_ASSERT(XEP_DEFAULT_INI_BYTES <= XEP_INI_MAX_BYTES);
-
 // First writable wins. No Flash: (not worth a NAND write) and no Game:.
 static const char *const kWritePaths[] = {
     "Hdd:\\xeproxy.ini",

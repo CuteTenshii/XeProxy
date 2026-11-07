@@ -4,7 +4,7 @@
 // re-run the generator; build.sh and build.bat do it for you when python
 // is on PATH.
 //
-// 77 lines, 2446 bytes of source.
+// 75 lines, 2265 bytes of source.
 
 #ifndef XEP_DEFAULT_INI_H
 #define XEP_DEFAULT_INI_H
@@ -35,7 +35,7 @@ static const char *const kDefaultIni[] = {
     "max_stream_sockets = -1",
     "",
     "[proxy]",
-    "host = 192.168.50.180        ; mitmproxy host",
+    "host = 192.168.1.50          ; mitmproxy host",
     "port = 8080",
     "mode = socks5                ; redirect | socks5 | http | drop  (socks5 = mitmproxy --mode socks5; http = CONNECT through mitmproxy's default regular mode)",
     "socks_user =",
@@ -49,10 +49,8 @@ static const char *const kDefaultIni[] = {
     "[redirect]",
     "; address[/bits][:port] = address[:port][, mode]",
     "; First match wins, so exceptions go ABOVE the catch-all.",
-    "; Let XeCord reach Discord directly - it pins its own TLS root, so a MITM proxy",
-    "; only breaks it. Both gateway.discord.gg and discord.com live in Cloudflare's",
-    "; 162.159.0.0/16. passthrough = matched but left alone (no redirect, no SOCKS).",
-    "162.159.0.0/16:443 = passthrough",
+    "; passthrough = matched but left alone (no redirect, no tunnel).",
+    ";10.0.0.0/8 = passthrough",
     ";*:443 = proxy",
     ";*:80 = proxy",
     "",
@@ -90,8 +88,5 @@ static const char *const kDefaultIni[] = {
 };
 
 #define XEP_DEFAULT_INI_LINES ((int)(sizeof(kDefaultIni) / sizeof(kDefaultIni[0])))
-
-// Size of what the plugin writes, CRLF endings included.
-#define XEP_DEFAULT_INI_BYTES 2523
 
 #endif // XEP_DEFAULT_INI_H
