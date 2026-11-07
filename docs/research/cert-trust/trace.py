@@ -7,14 +7,14 @@ It also learns netprobe's thread id from its "[netprobe ...]" debugstr lines,
 so we can tell the cert path (netprobe thread) from background noise.
 
 Usage:
-  python research/cert-trust/trace.py <seconds> <addr> [addr ...]
-  python research/cert-trust/trace.py <seconds> --slice <start> <count>   # from entries file
-  python research/cert-trust/trace.py <seconds> --all                     # all entries
+  python docs/research/cert-trust/trace.py <seconds> <addr> [addr ...]
+  python docs/research/cert-trust/trace.py <seconds> --slice <start> <count>   # from entries file
+  python docs/research/cert-trust/trace.py <seconds> --all                     # all entries
 
 NEVER uses stopon (that suspends threads). Breakpoints are notify-only.
 """
 import os, re, sys, time
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "tools"))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "..", "tools"))
 import xbdm
 
 ENTRIES = os.path.join(os.path.dirname(__file__), "cert-cluster-entries.txt")
