@@ -1,0 +1,12 @@
+.idea
+build
+out
+
+*.xex
+*.exe
+# per-console live config, not the shipped reference
+xeproxy.local.ini
+
+# python bytecode
+__pycache__/
+*.pyc

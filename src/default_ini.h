@@ -1,0 +1,97 @@
+// default_ini.h - GENERATED FILE, do not edit.
+//
+// Produced from xeproxy.ini by tools/mkdefaults.py. Edit the ini and
+// re-run the generator; build.sh and build.bat do it for you when python
+// is on PATH.
+//
+// 77 lines, 2446 bytes of source.
+
+#ifndef XEP_DEFAULT_INI_H
+#define XEP_DEFAULT_INI_H
+
+static const char *const kDefaultIni[] = {
+    "; xeproxy.ini - config for XeProxy.xex. First copy found on Usb0-2:/Hdd:/Flash:/Game: wins, hot-reloaded.",
+    "; Ships inert (enabled = 0). Set enabled = 1 and point [proxy] at your mitmproxy to use it.",
+    "",
+    "[general]",
+    "enabled = 0",
+    ";log = Hdd:\\xeproxy.log",
+    "log_level = 2                ; forced off while config_reload_seconds = 0",
+    "log_packets = 0",
+    "dump_at = 0",
+    "dump_words = 16",
+    "config_reload_seconds = 0    ; 0 = off (default); >0 applies ini edits live and enables logging",
+    "wait_for_config_ms = 60000   ; how long to wait at boot for the drives/ini",
+    "tls_ignore_cert_errors = 0   ; 1 = apply the xam TLS handshake fix for proxy MITM",
+    "force_connect_status = 0",
+    "bypass_qos = 0",
+    "map_xnaddr_to_ina = 1",
+    "",
+    "[xnetstartup]",
+    "patch = 1",
+    "force_flags = 0x01           ; 0x01 BYPASS_SECURITY, needed for a proxy to see traffic",
+    "clear_flags = 0x00",
+    "max_dgram_sockets = -1",
+    "max_stream_sockets = -1",
+    "",
+    "[proxy]",
+    "host = 192.168.50.180        ; mitmproxy host",
+    "port = 8080",
+    "mode = socks5                ; redirect | socks5 | http | drop  (socks5 = mitmproxy --mode socks5; http = CONNECT through mitmproxy's default regular mode)",
+    "socks_user =",
+    "socks_pass =",
+    "socks_timeout_ms = 5000",
+    "forward_lan = 1              ; 0 = never redirect LAN/loopback/multicast destinations (10/8, 172.16/12, 192.168/16, ...)",
+    "",
+    "[dns]",
+    "; pattern = address  (passthrough lets the resolver answer)",
+    "",
+    "[redirect]",
+    "; address[/bits][:port] = address[:port][, mode]",
+    "; First match wins, so exceptions go ABOVE the catch-all.",
+    "; Let XeCord reach Discord directly - it pins its own TLS root, so a MITM proxy",
+    "; only breaks it. Both gateway.discord.gg and discord.com live in Cloudflare's",
+    "; 162.159.0.0/16. passthrough = matched but left alone (no redirect, no SOCKS).",
+    "162.159.0.0/16:443 = passthrough",
+    ";*:443 = proxy",
+    ";*:80 = proxy",
+    "",
+    "[xhttp]",
+    "; pattern = host[:port]",
+    "",
+    "[hooks]",
+    "XNetStartup          = 1",
+    "XNetDnsLookup        = 1",
+    "XNetDnsRelease       = 1",
+    "connect              = 1",
+    "sendto               = 1",
+    "WSASendTo            = 1",
+    "recvfrom             = 1",
+    "WSARecvFrom          = 1",
+    "XHttpConnect         = 1",
+    "XNetXnAddrToInAddr   = 0",
+    "XNetServerToInAddr   = 0",
+    "XNetInAddrToXnAddr   = 0",
+    "XNetInAddrToServer   = 0",
+    "XNetGetConnectStatus = 0",
+    "XNetQosLookup        = 0",
+    "XNetQosServiceLookup = 0",
+    "socket               = 0",
+    "closesocket          = 0",
+    "bind                 = 0",
+    "setsockopt           = 0",
+    "send                 = 0",
+    "recv                 = 0",
+    "select               = 0",
+    "",
+    "[ordinals]",
+    "; override an xam export ordinal if one failed to resolve",
+    ";XHttpSetOption = 215",
+};
+
+#define XEP_DEFAULT_INI_LINES ((int)(sizeof(kDefaultIni) / sizeof(kDefaultIni[0])))
+
+// Size of what the plugin writes, CRLF endings included.
+#define XEP_DEFAULT_INI_BYTES 2523
+
+#endif // XEP_DEFAULT_INI_H
