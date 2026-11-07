@@ -1,0 +1,3 @@
+# tools/mkdefaults.py refuses a CRLF xeproxy.ini; shell scripts need LF
+xeproxy.ini text eol=lf
+*.sh text eol=lf
